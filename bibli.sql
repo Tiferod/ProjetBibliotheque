@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 18, 2018 at 05:41 PM
+-- Generation Time: Jan 18, 2018 at 07:58 PM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.1
 
@@ -30,6 +30,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `Abonnés` (
   `ID` int(11) NOT NULL,
+  `pseudo` varchar(20) NOT NULL,
   `mdp` varchar(20) NOT NULL,
   `nom` varchar(20) NOT NULL,
   `prénom` varchar(20) NOT NULL,
@@ -39,6 +40,13 @@ CREATE TABLE `Abonnés` (
   `date_de_naissance` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `Abonnés`
+--
+
+INSERT INTO `Abonnés` (`ID`, `pseudo`, `mdp`, `nom`, `prénom`, `adresse`, `téléphone`, `mail`, `date_de_naissance`) VALUES
+(1, 'sforest', 'password', 'Forest', 'Simon', 'qqpart', '0123456789', 'test@test.fr', '2018-01-01');
+
 -- --------------------------------------------------------
 
 --
@@ -47,6 +55,7 @@ CREATE TABLE `Abonnés` (
 
 CREATE TABLE `Admins` (
   `ID` int(11) NOT NULL,
+  `pseudo` varchar(20) NOT NULL,
   `mdp` varchar(20) NOT NULL,
   `nom` varchar(20) NOT NULL,
   `prénom` varchar(20) NOT NULL,
@@ -261,19 +270,21 @@ CREATE TABLE `Thèmes` (
 -- Indexes for table `Abonnés`
 --
 ALTER TABLE `Abonnés`
-  ADD KEY `ID` (`ID`);
+  ADD PRIMARY KEY (`ID`) USING BTREE,
+  ADD UNIQUE KEY `pseudo` (`pseudo`);
 
 --
 -- Indexes for table `Admins`
 --
 ALTER TABLE `Admins`
-  ADD KEY `ID` (`ID`);
+  ADD PRIMARY KEY (`ID`) USING BTREE,
+  ADD UNIQUE KEY `pseudo` (`pseudo`);
 
 --
 -- Indexes for table `Auteurs`
 --
 ALTER TABLE `Auteurs`
-  ADD KEY `ID` (`ID`);
+  ADD PRIMARY KEY (`ID`) USING BTREE;
 
 --
 -- Indexes for table `ContientThème`
@@ -291,7 +302,7 @@ ALTER TABLE `Cotisations`
 -- Indexes for table `Cotise`
 --
 ALTER TABLE `Cotise`
-  ADD KEY `ID` (`ID`);
+  ADD PRIMARY KEY (`ID`) USING BTREE;
 
 --
 -- Indexes for table `CrééPar`
@@ -303,13 +314,13 @@ ALTER TABLE `CrééPar`
 -- Indexes for table `Documents`
 --
 ALTER TABLE `Documents`
-  ADD KEY `ID` (`ID`);
+  ADD PRIMARY KEY (`ID`) USING BTREE;
 
 --
 -- Indexes for table `Emprunts`
 --
 ALTER TABLE `Emprunts`
-  ADD KEY `ID` (`ID`);
+  ADD PRIMARY KEY (`ID`) USING BTREE;
 
 --
 -- Indexes for table `EmpruntsRendus`
@@ -321,13 +332,13 @@ ALTER TABLE `EmpruntsRendus`
 -- Indexes for table `Exclusions`
 --
 ALTER TABLE `Exclusions`
-  ADD KEY `ID` (`ID`);
+  ADD PRIMARY KEY (`ID`) USING BTREE;
 
 --
 -- Indexes for table `Retards`
 --
 ALTER TABLE `Retards`
-  ADD KEY `ID` (`ID`);
+  ADD PRIMARY KEY (`ID`) USING BTREE;
 
 --
 -- Indexes for table `Similaires`
@@ -339,7 +350,7 @@ ALTER TABLE `Similaires`
 -- Indexes for table `Thèmes`
 --
 ALTER TABLE `Thèmes`
-  ADD KEY `ID` (`ID`);
+  ADD PRIMARY KEY (`ID`) USING BTREE;
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -349,7 +360,7 @@ ALTER TABLE `Thèmes`
 -- AUTO_INCREMENT for table `Abonnés`
 --
 ALTER TABLE `Abonnés`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `Admins`
