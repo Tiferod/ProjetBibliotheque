@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 18, 2018 at 07:58 PM
+-- Generation Time: Jan 18, 2018 at 11:16 PM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.1
 
@@ -45,7 +45,7 @@ CREATE TABLE `Abonnés` (
 --
 
 INSERT INTO `Abonnés` (`ID`, `pseudo`, `mdp`, `nom`, `prénom`, `adresse`, `téléphone`, `mail`, `date_de_naissance`) VALUES
-(1, 'sforest', 'password', 'Forest', 'Simon', 'qqpart', '0123456789', 'test@test.fr', '2018-01-01');
+(1, 'jsnow', 'password', 'Snow', 'Jon', 'qqpart', '0123456789', 'abonne@abo.fr', '2018-01-01');
 
 -- --------------------------------------------------------
 
@@ -61,6 +61,13 @@ CREATE TABLE `Admins` (
   `prénom` varchar(20) NOT NULL,
   `mail` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `Admins`
+--
+
+INSERT INTO `Admins` (`ID`, `pseudo`, `mdp`, `nom`, `prénom`, `mail`) VALUES
+(1, 'nstark', 'password', 'Stark', 'Ned', 'admin@admin.com');
 
 -- --------------------------------------------------------
 
@@ -366,7 +373,7 @@ ALTER TABLE `Abonnés`
 -- AUTO_INCREMENT for table `Admins`
 --
 ALTER TABLE `Admins`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `Auteurs`

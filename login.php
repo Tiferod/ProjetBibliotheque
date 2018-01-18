@@ -13,23 +13,29 @@
 				printf("Échec de la connexion : %s\n", mysqli_connect_error());
 				exit();
 			}
-			//$pseudo = stripslashes($pseudo);
-			//$mdp = stripslashes($mdp);
-			//$pseudo = mysqli_real_escape_string($pseudo);
-			//$mdp = mysqli_real_escape_string($mdp);
-			//$query = mysqli_query($db, "SELECT * FROM Abonnés WHERE mdp = '$mdp' AND pseudo = '$pseudo'");
-			$stmt = mysqli_prepare($db, "SELECT * FROM Abonnés WHERE pseudo =? AND mdp =?");
+			if (isset($_POST['is_admin'])) {
+				$stmt = mysqli_prepare($db, "SELECT * FROM Admins WHERE pseudo =? AND mdp =?");
+				$_SESSION['is_admin'] = True;
+			}
+			else {
+				$stmt = mysqli_prepare($db, "SELECT * FROM Abonnés WHERE pseudo =? AND mdp =?");
+				$_SESSION['is_admin'] = False;
+			}
 			mysqli_stmt_bind_param($stmt, "ss", $pseudo, $mdp);
 			mysqli_stmt_execute($stmt);
-			//mysqli_stmt_bind_result($stmt, $res);
-			//mysqli_stmt_fetch($stmt);
 			$res = mysqli_stmt_get_result($stmt);
 			$rows = mysqli_num_rows($res);
 			if ($rows == 1) {
 				$_SESSION['pseudo'] = $pseudo;
 				$_SESSION['mdp'] = $mdp;
-				header("location: home.php");
-			} else {
+				if ($_SESSION['is_admin']) {
+					header("location: admin.php");
+				}
+				else {
+					header("location: home.php");
+				}
+			}
+			else {
 				$error = "Nom ou mot de passe invalide";
 			}
 			mysqli_close($db);

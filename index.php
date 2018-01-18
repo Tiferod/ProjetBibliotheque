@@ -1,7 +1,12 @@
 <?php
 	include('login.php');
-	if(isset($_SESSION['pseudo'])) {
-		header("location: home.php");
+	if (isset($_SESSION['pseudo'])) {
+		if ($_SESSION['is_admin']) {
+			header("location: admin.php");
+		}
+		else {
+			header("location: home.php");
+		}
 	}
 ?>
 <!DOCTYPE html>
@@ -18,6 +23,7 @@
 				<input name="pseudo" placeholder="Nom d'utilisateur" type="text" />
 				<label>Mot de passe :</label>
 				<input name="mdp" placeholder="****" type="password" />
+				<input name="is_admin" type="checkbox"> Administrateur ?
 				<input name="submit" type="submit" value="Se connecter" />
 				<span><?php echo $error; ?></span>
 			</form>

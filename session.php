@@ -6,7 +6,12 @@
 		exit();
 	}
 	$verif = $_SESSION['pseudo'];
-	$query = mysqli_query($db, "SELECT * FROM Abonnés WHERE pseudo = '$verif'");
+	if ($_SESSION['is_admin']) {
+		$query = mysqli_query($db, "SELECT * FROM Admins WHERE pseudo = '$verif'");
+	}
+	else {
+		$query = mysqli_query($db, "SELECT * FROM Abonnés WHERE pseudo = '$verif'");
+	}
 	$row = mysqli_fetch_assoc($query);
 	$nom = $row['nom'];
 	$prenom = $row['prénom'];
