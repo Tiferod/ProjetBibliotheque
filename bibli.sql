@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 18, 2018 at 03:24 PM
+-- Generation Time: Jan 18, 2018 at 05:41 PM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.1
 
@@ -154,6 +154,29 @@ CREATE TABLE `Emprunts` (
   `date_retour_prevue` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Triggers `Emprunts`
+--
+DELIMITER $$
+CREATE TRIGGER `disponible` AFTER DELETE ON `Emprunts` FOR EACH ROW UPDATE Documents SET disponible = 1 WHERE ID = OLD.document
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `pas_disponible` AFTER INSERT ON `Emprunts` FOR EACH ROW UPDATE Documents SET disponible = 0 WHERE ID = NEW.document
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `retard_et_historique` BEFORE DELETE ON `Emprunts` FOR EACH ROW BEGIN
+IF OLD.date_retour_prevue < NOW() THEN
+	INSERT INTO Retards(abonné, document, date_retour, amende)
+		VALUES(OLD.abonné, OLD.document, NOW(), DATEDIFF(NOW(), OLD.date_retour_prevue));
+END IF;
+INSERT INTO EmpruntsRendus(abonné, document, date_emprunt, date_retour)
+	VALUES(OLD.abonné, OLD.document, OLD.date_emprunt, NOW());
+END
+$$
+DELIMITER ;
+
 -- --------------------------------------------------------
 
 --
@@ -194,6 +217,19 @@ CREATE TABLE `Retards` (
   `amende` int(1) NOT NULL,
   `payé` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Triggers `Retards`
+--
+DELIMITER $$
+CREATE TRIGGER `exclusion` AFTER INSERT ON `Retards` FOR EACH ROW IF (SELECT count(*) FROM Retards
+    WHERE abonné = NEW.abonné
+    AND DATEDIFF(NOW(), date_retour) <= 365) >= 3 THEN
+	INSERT INTO Exclusions(abonné, date_fin)
+		VALUES(NEW.abonné, DATE_ADD(NOW(), INTERVAL 1 YEAR));
+END IF
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
