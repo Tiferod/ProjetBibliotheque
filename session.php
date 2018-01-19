@@ -13,6 +13,7 @@
 		$query = mysqli_query($db, "SELECT * FROM Abonnés WHERE pseudo = '$verif'");
 	}
 	$row = mysqli_fetch_assoc($query);
+	$user_id = $row['ID'];
 	$nom = $row['nom'];
 	$prenom = $row['prénom'];
 	$pseudo = $row['pseudo'];
