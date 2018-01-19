@@ -8,8 +8,9 @@
 		<link href="style.css" rel="stylesheet" type="text/css">
 	</head>
 	<body>
-		<div>Bienvenue, <?php echo $prenom . " " . $nom; ?>.</div>
-		<div><a href="logout.php">Se déconnecter</a></div>
+		<?php
+			include('header.php');
+		?>
 		<h1>Tableau de bord</h1>
 		<?php
 			$result = mysqli_query($db, "SELECT date_fin FROM Exclusions WHERE abonné = '$user_id' AND NOW() < date_fin ORDER BY date_fin DESC");
@@ -64,7 +65,7 @@
 			}
 			else {
 				echo '<div>Vous avez ' . $row_cpt . ' emprunt(s) en cours.</div>';
-				echo '<table><tr><td>Document</td><td>Emprunté le</td><td>À rendre le</td></tr>';
+				echo '<table><tr><td>Document</td><td>Emprunté le</td><td>À rendre avant le</td></tr>';
 				while ($row = mysqli_fetch_row($result)) {
 					$doc = mysqli_query($db, "SELECT titre FROM Documents WHERE ID = '$row[0]'");
 					echo '<tr><td>' . mysqli_fetch_row($doc)[0] . '</td><td>' . $row[1] . '</td><td>' . $row[2] . '</td></tr>';

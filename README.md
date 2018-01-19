@@ -9,3 +9,11 @@ Users ayant accès à la BDD (pour les tests) :
 - `jsnow` / `password` : un abonné standard
 
 - `nstark` / `password` : un admin standard
+
+TODO :
+
+- style
+
+- formater les dates
+
+- auteurs : nom + prénom ?
