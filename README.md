@@ -6,10 +6,6 @@ Users ayant accès à la BDD (pour les tests) :
 
 - `dev` / `password` : grand manitou, utilisé dans le code, peut-être de manière permanente
 
-- `jsnow` / `password` : un abonné standard
-
-- `nstark` / `password` : un admin standard
-
 TODO :
 
 - style
@@ -33,3 +29,5 @@ TODO :
 Known issues :
 
 - si un abonné fait plusieurs cotisations le même jour, seule la première est prise en compte
+
+- pas assez de caractères pour les titres
