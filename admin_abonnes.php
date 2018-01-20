@@ -26,14 +26,14 @@
 			}
 		}
 	}
-	/*if (isset($_POST['update'])) {
-		if (empty($_POST['pseudo']) || empty($_POST['mdp']) || empty($_POST['nom']) || empty($_POST['prénom']) || empty($_POST['mail'])) {
+	if (isset($_POST['update'])) {
+		if (empty($_POST['pseudo']) || empty($_POST['mdp']) || empty($_POST['nom']) || empty($_POST['prenom']) || empty($_POST['naissance']) || empty($_POST['adresse']) || empty($_POST['mail'])) {
 			$display = "Échec de la mise à jour, merci de remplir tous les champs";
 		}
 		else {
 			$id = $_POST['id'];
-			$stmt = mysqli_prepare($db, "UPDATE Admins SET pseudo=?, mdp=?, nom=?, prénom=?, mail=? WHERE ID = '$id'");
-			mysqli_stmt_bind_param($stmt, "sssss", $_POST['pseudo'], $_POST['mdp'], $_POST['nom'], $_POST['prénom'], $_POST['mail']);
+			$stmt = mysqli_prepare($db, "UPDATE Abonnés SET pseudo=?, mdp=?, nom=?, prénom=?, date_de_naissance=?, adresse=?, téléphone=?, mail=? WHERE ID = '$id'");
+			mysqli_stmt_bind_param($stmt, "ssssssss", $_POST['pseudo'], $_POST['mdp'], $_POST['nom'], $_POST['prenom'], $_POST['naissance'], $_POST['adresse'], $_POST['tel'], $_POST['mail']);
 			mysqli_stmt_execute($stmt);
 			if (mysqli_affected_rows($db) == 1) {
 				$display = "Modification du compte réussie";
@@ -42,7 +42,7 @@
 				$display = "Échec de la modification du compte";
 			}
 		}
-	}*/
+	}
 	if (isset($_POST['delete'])) {
 		$id = $_POST['id'];
 		$pseudo = $_POST['pseudo'];

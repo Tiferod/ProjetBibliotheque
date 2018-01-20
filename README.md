@@ -16,7 +16,7 @@ TODO :
 
 - remplir les BDDs
 
-- gestion abonnés : remplacer admins par abonnés avec quelques opérations en plus (on mettra tout sur la même page, tant pis)
+- gestion abonnés : quelques opérations en plus
 
 - gestion documents : remplacer admins par auteurs / documents (attention si plusieurs auteurs par document)
 
