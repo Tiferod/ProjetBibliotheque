@@ -70,14 +70,19 @@
 			$result = mysqli_query($db, "SELECT ID, pseudo, nom, prénom, mail FROM Admins");
 			echo '<table><tr><td>Pseudo</td><td>Nom</td><td>Prénom</td><td>Adresse mail</td><td></td><td></td></tr>';
 			while ($row = mysqli_fetch_row($result)) {
-				echo '<tr><td>' . $row[1] . '</td><td>' . $row[2] . '</td><td>' . $row[3] . '</td><td>' . $row[4] .
-					'</td><td><form action="modif_admin.php?id='.$row[0].'" method="post">
-						<input name="update" type="submit" value="Modifier" /></form>
-					</td><td><form action="" method="post">
+				echo '<tr><td>' . $row[1] . '</td><td>' . $row[2] . '</td><td>' . $row[3] . '</td><td>' . $row[4] . '</td>' .
+					'<td><form action="modif_admin.php?id='.$row[0].'" method="post">
+						<input name="update" type="submit" value="Modifier" /></form></td>';
+				if ($row[0] == $user_id) {
+					echo '<td></td>';
+				}
+				else {
+					echo '<td><form action="" method="post">
 						<input type="hidden" name="id" value='.$row[0].' />
 						<input type="hidden" name="pseudo" value='.$row[1].' />
-						<input name="delete" type="submit" value="Supprimer" /></form>
-					</td></tr>';
+						<input name="delete" type="submit" value="Supprimer" /></form></td>';
+				}
+				echo '</tr>';
 			}
 			echo '</table>';
 		?>
