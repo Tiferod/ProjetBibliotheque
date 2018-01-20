@@ -8,3 +8,7 @@
 </div>
 <div>Vous êtes connecté en tant que <?php echo $prenom . " " . $nom; ?>.</div>
 <div><a href="logout.php">Se déconnecter</a></div>
+<?php
+	if (!$_SESSION['is_admin']) {
+		echo "<h2>Cette page est réservée aux administrateurs. Vous n'avez pas le droit d'effectuer des modifications sur la base de données.</h2>";
+	}

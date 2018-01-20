@@ -3,15 +3,16 @@
 ?>
 <?php
 	$display='';
-	if (isset($_POST['submit'])) {
+	if (isset($_POST['insert'])) {
 		if (empty($_POST['pseudo']) || empty($_POST['mdp']) || empty($_POST['nom']) || empty($_POST['prénom']) || empty($_POST['mail'])) {
 			$display = "Merci de remplir tous les champs";
 		}
 		else {
-			$pseudo = $_POST['pseudo'];
-			$mdp = $_POST['mdp'];
+			$pseudo = mysqli_real_escape_string($db, $_POST['pseudo']);
+			$mdp = mysqli_real_escape_string($db, $_POST['mdp']);
 			mysqli_query($db, "CREATE USER '$pseudo'@'localhost' IDENTIFIED BY '$mdp';");
 			mysqli_query($db, "GRANT ALL PRIVILEGES ON `bibli`.* TO '$pseudo'@'localhost' WITH GRANT OPTION;");
+			mysqli_query($db, "GRANT CREATE USER ON *.* TO '$pseudo'@'localhost' WITH GRANT OPTION;");
 			$stmt = mysqli_prepare($db, "INSERT INTO Admins(pseudo, mdp, nom, prénom, mail) VALUES (?,?,?,?,?)");
 			mysqli_stmt_bind_param($stmt, "sssss", $pseudo, $mdp, $_POST['nom'], $_POST['prénom'], $_POST['mail']);
 			mysqli_stmt_execute($stmt);
@@ -23,8 +24,27 @@
 			}
 		}
 	}
+	if (isset($_POST['update'])) {
+		if (empty($_POST['pseudo']) || empty($_POST['mdp']) || empty($_POST['nom']) || empty($_POST['prénom']) || empty($_POST['mail'])) {
+			$display = "Échec de la mise à jour, merci de remplir tous les champs";
+		}
+		else {
+			$id = $_POST['id'];
+			$stmt = mysqli_prepare($db, "UPDATE Admins SET pseudo=?, mdp=?, nom=?, prénom=?, mail=? WHERE ID = '$id'");
+			mysqli_stmt_bind_param($stmt, "sssss", $_POST['pseudo'], $_POST['mdp'], $_POST['nom'], $_POST['prénom'], $_POST['mail']);
+			mysqli_stmt_execute($stmt);
+			if (mysqli_affected_rows($db) == 1) {
+				$display = "Modification du compte réussie";
+			}
+			else {
+				$display = "Échec de la modification du compte";
+			}
+		}
+	}
 	if (isset($_POST['delete'])) {
 		$id = $_POST['id'];
+		$pseudo = $_POST['pseudo'];
+		mysqli_query($db, "DROP USER '$pseudo'@'localhost';");
 		mysqli_query($db, "DELETE FROM Admins WHERE ID = '$id'");
 		if (mysqli_affected_rows($db) == 1) {
 			$display = "Suppression du compte réussie";
@@ -48,10 +68,16 @@
 		<h2>Liste des administrateurs</h2>
 		<?php
 			$result = mysqli_query($db, "SELECT ID, pseudo, nom, prénom, mail FROM Admins");
-			echo '<table><tr><td>Pseudo</td><td>Nom</td><td>Prénom</td><td>Adresse mail</td><td>Modifier</td><td></td></tr>';
+			echo '<table><tr><td>Pseudo</td><td>Nom</td><td>Prénom</td><td>Adresse mail</td><td></td><td></td></tr>';
 			while ($row = mysqli_fetch_row($result)) {
-				echo '<tr><td>' . $row[0] . '</td><td>' . $row[1] . '</td><td>' . $row[2] . '</td><td>' . $row[3] . '</td><td></td>' .
-					'<td><form action="" method="post"><input type="hidden" name="id" value=' . $row[0] . ' /><input name="delete" type="submit" value="Supprimer" /></form></td></tr>';
+				echo '<tr><td>' . $row[1] . '</td><td>' . $row[2] . '</td><td>' . $row[3] . '</td><td>' . $row[4] .
+					'</td><td><form action="modif_admin.php?id='.$row[0].'" method="post">
+						<input name="update" type="submit" value="Modifier" /></form>
+					</td><td><form action="" method="post">
+						<input type="hidden" name="id" value='.$row[0].' />
+						<input type="hidden" name="pseudo" value='.$row[1].' />
+						<input name="delete" type="submit" value="Supprimer" /></form>
+					</td></tr>';
 			}
 			echo '</table>';
 		?>
@@ -67,7 +93,7 @@
 			<input name="prénom" type="text" />
 			<label>Adresse mail :</label>
 			<input name="mail" type="text" />
-			<input name="submit" type="submit" value="Ajouter" />
+			<input name="insert" type="submit" value="Ajouter" />
 		</form>
 		<div><?php echo $display; ?></div>
 	</body>
