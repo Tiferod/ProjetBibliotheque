@@ -62,9 +62,10 @@
 			}
 			echo '</select></div>';
 
+			echo '<h2>Valider</h2>';
 			echo '<div><input name="emprunt" type="submit" value="Emprunter le document" /></div>';
 			echo '</form>';
-			echo '<div>'.$display.'</div>';
+			echo '<div id="info">'.$display.'</div>';
 		?>
 	</body>
 </html>

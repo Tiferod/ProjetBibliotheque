@@ -1,4 +1,4 @@
-<div>
+<div class="menu">
 	<a href=home.php>Accueil</a>
 	<a href=historique.php>Historique d'emprunts</a>
 	<a href=emprunts.php>Emprunts en cours</a>

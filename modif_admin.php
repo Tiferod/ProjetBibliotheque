@@ -19,17 +19,17 @@
 		?>
 		<form action="admin_home.php" method="post">
 			<input name="id" type="hidden" value="<?php echo $id ?>" />
-			<label>Nom d'utilisateur :</label>
-			<input name="pseudo" type="text" value="<?php echo $row[0] ?>" />
-			<label>Mot de passe :</label>
-			<input name="mdp" type="password" value="<?php echo $row[1] ?>" />
-			<label>Nom :</label>
-			<input name="nom" type="text" value="<?php echo $row[2] ?>" />
-			<label>Prénom :</label>
-			<input name="prénom" type="text" value="<?php echo $row[3] ?>" />
-			<label>Adresse mail :</label>
-			<input name="mail" type="text" value="<?php echo $row[4] ?>" />
-			<input name="update" type="submit" value="Modifier" />
+			<div><label>Nom d'utilisateur :</label>
+			<input name="pseudo" type="text" value="<?php echo $row[0] ?>" /></div>
+			<div><label>Mot de passe :</label>
+			<input name="mdp" type="password" value="<?php echo $row[1] ?>" /></div>
+			<div><label>Nom :</label>
+			<input name="nom" type="text" value="<?php echo $row[2] ?>" /></div>
+			<div><label>Prénom :</label>
+			<input name="prénom" type="text" value="<?php echo $row[3] ?>" /></div>
+			<div><label>Adresse mail :</label>
+			<input name="mail" type="text" value="<?php echo $row[4] ?>" /></div>
+			<div><input name="update" type="submit" value="Modifier" /></div>
 		</form>
 	</body>
 </html>

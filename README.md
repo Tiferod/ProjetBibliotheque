@@ -29,3 +29,7 @@ TODO :
 - plus de vérifications internes que ça marche
 
 - pour les emprunts et retours, sélectionner abonné en rentrant le pseudo ou le document par l'ID
+
+Known issues :
+
+- si un abonné fait plusieurs cotisations le même jour, seule la première est prise en compte

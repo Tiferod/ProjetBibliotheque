@@ -48,7 +48,7 @@
 			}
 			else {
 				echo '<div>Vous avez ' . $row_cpt . ' retard(s) à votre actif.</div>';
-				echo '<table><tr><td>Document</td><td>Rendu le</td></tr>';
+				echo '<table><tr id="header"><td>Document</td><td>Rendu le</td></tr>';
 				while ($row = mysqli_fetch_row($result)) {
 					$doc = mysqli_query($db, "SELECT titre FROM Documents WHERE ID = '$row[0]'");
 					echo '<tr><td>' . mysqli_fetch_row($doc)[0] . '</td><td>' . $row[1] . '</td></tr>';

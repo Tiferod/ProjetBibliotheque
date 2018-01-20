@@ -28,16 +28,17 @@
 		<?php
 			echo '<h2>Sélectionner un document</h2>';
 			$results = mysqli_query($db, "SELECT Emprunts.ID, document, titre FROM Emprunts, Documents WHERE document = Documents.ID");
-			echo '<div><form action="" method="post">';
-			echo '<select name="emprunt">';
+			echo '<form action="" method="post">';
+			echo '<div><select name="emprunt">';
 			echo '<option value="">Choisir un document emprunté</option>';
 			while ($row = mysqli_fetch_row($results)) {
 				echo '<option value="'.$row[0].'">'.$row[1].' : '.$row[2].'</option>';
 			}
-			echo '</select>';
-			echo '<input name="retour" type="submit" value="Retourner le document" />';
-			echo '</form></div>';
-			echo '<div>'.$display.'</div>';
+			echo '</select></div>';
+			echo '<h2>Valider</h2>';
+			echo '<div><input name="retour" type="submit" value="Retourner le document" /></div>';
+			echo '</form>';
+			echo '<div id="info">'.$display.'</div>';
 		?>
 	</body>
 </html>

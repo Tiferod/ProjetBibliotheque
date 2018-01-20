@@ -19,13 +19,13 @@
 		<div>
 			<h1>Connexion</h1>
 			<form action="" method="post">
-				<label>Nom d'utilisateur :</label>
-				<input name="pseudo" placeholder="Nom d'utilisateur" type="text" />
-				<label>Mot de passe :</label>
-				<input name="mdp" placeholder="****" type="password" />
-				<input name="is_admin" type="checkbox"> Administrateur ?
-				<input name="submit" type="submit" value="Se connecter" />
-				<span><?php echo $error; ?></span>
+				<div><label>Nom d'utilisateur :</label>
+				<input name="pseudo" placeholder="Nom d'utilisateur" type="text" /></div>
+				<div><label>Mot de passe :</label>
+				<input name="mdp" placeholder="****" type="password" /></div>
+				<div><input name="is_admin" type="checkbox"> Administrateur ?</div>
+				<div><input name="submit" type="submit" value="Se connecter" /></div>
+				<span id="info"><?php echo $error; ?></span>
 			</form>
 		</div>
 	</body>

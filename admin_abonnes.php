@@ -81,9 +81,9 @@
 		<h2>Liste des abonnés</h2>
 		<?php
 			$result = mysqli_query($db, "SELECT * FROM Abonnés");
-			echo "<table><tr><td>Pseudo</td><td>Nom</td><td>Prénom</td><td>Date de naissance</td><td>Adresse</td><td>Numéro de téléphone</td><td>Adresse mail</td>
-				<td>Statut</td><td>Expiration de la cotisation</td><td></td>
-				<td>Retards</td><td></td><td></td></tr>";
+			echo "<table><tr id='header'><td>Pseudo</td><td>Nom</td><td>Prénom</td><td>Date de naissance</td><td>Adresse</td><td>Numéro de téléphone</td><td>Adresse mail</td>
+				<td>Statut</td><td>Expiration de la cotisation</td><td>Cotiser</td>
+				<td>Retards</td><td></td><td></td><td></td></tr>";
 			while ($row = mysqli_fetch_row($result)) {
 				$id = $row[0];
 				echo '<tr><td>' . $row[1] . '</td><td>' . $row[3] . '</td><td>' . $row[4] . '</td><td>' . $row[8] . '</td><td>' . $row[5] . '</td><td>' . $row[6] . '</td><td>' . $row[7] . '</td>';
@@ -143,23 +143,23 @@
 		?>
 		<h2>Créer un compte</h2>
 		<form action="" method="post">
-			<label>Nom d'utilisateur* :</label>
-			<input name="pseudo" type="text" />
-			<label>Mot de passe* :</label>
-			<input name="mdp" type="password" />
-			<label>Nom* :</label>
-			<input name="nom" type="text" />
-			<label>Prénom* :</label>
-			<input name="prenom" type="text" />
-			<label>Date de naissance* :</label>
-			<input name="naissance" type="text" />
-			<label>Adresse* :</label>
-			<input name="adresse" type="text" />
-			<label>Numéro de téléphone :</label>
-			<input name="tel" type="text" />
-			<label>Adresse mail* :</label>
-			<input name="mail" type="text" />
-			<label>Statut* :</label>
+			<div><label>Nom d'utilisateur* :</label>
+			<input name="pseudo" type="text" /></div>
+			<div><label>Mot de passe* :</label>
+			<input name="mdp" type="password" /></div>
+			<div><label>Nom* :</label>
+			<input name="nom" type="text" /></div>
+			<div><label>Prénom* :</label>
+			<input name="prenom" type="text" /></div>
+			<div><label>Date de naissance* :</label>
+			<input name="naissance" type="text" /></div>
+			<div><label>Adresse* :</label>
+			<input name="adresse" type="text" /></div>
+			<div><label>Numéro de téléphone :</label>
+			<input name="tel" type="text" /></div>
+			<div><label>Adresse mail* :</label>
+			<input name="mail" type="text" /></div>
+			<div><label>Statut* :</label>
 			<?php
 				$cotisations = mysqli_query($db, "SELECT * FROM Cotisations");
 				echo '<select name="statut">';
@@ -167,10 +167,10 @@
 					echo '<option value="'.$row[0].'">'.$row[0].' ('.$row[1].' €)</option>';
 				}
 				echo '</select>';
-			?>
-			<input name="insert" type="submit" value="Ajouter" />
+			?></div>
+			<div><input name="insert" type="submit" value="Ajouter" /></div>
 		</form>
 		<div>* champ obligatoire</div>
-		<div><?php echo $display; ?></div>
+		<div id="info"><?php echo $display; ?></div>
 	</body>
 </html>

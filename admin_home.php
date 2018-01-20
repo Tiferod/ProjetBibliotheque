@@ -68,7 +68,7 @@
 		<h2>Liste des administrateurs</h2>
 		<?php
 			$result = mysqli_query($db, "SELECT ID, pseudo, nom, prénom, mail FROM Admins");
-			echo '<table><tr><td>Pseudo</td><td>Nom</td><td>Prénom</td><td>Adresse mail</td><td></td><td></td></tr>';
+			echo '<table><tr id="header"><td>Pseudo</td><td>Nom</td><td>Prénom</td><td>Adresse mail</td><td></td><td></td></tr>';
 			while ($row = mysqli_fetch_row($result)) {
 				echo '<tr><td>' . $row[1] . '</td><td>' . $row[2] . '</td><td>' . $row[3] . '</td><td>' . $row[4] . '</td>' .
 					'<td><form action="modif_admin.php?id='.$row[0].'" method="post">
@@ -88,18 +88,18 @@
 		?>
 		<h2>Ajouter un administrateur</h2>
 		<form action="" method="post">
-			<label>Nom d'utilisateur :</label>
-			<input name="pseudo" placeholder="Nom d'utilisateur" type="text" />
-			<label>Mot de passe :</label>
-			<input name="mdp" placeholder="****" type="password" />
-			<label>Nom :</label>
-			<input name="nom" type="text" />
-			<label>Prénom :</label>
-			<input name="prénom" type="text" />
-			<label>Adresse mail :</label>
-			<input name="mail" type="text" />
-			<input name="insert" type="submit" value="Ajouter" />
+			<div><label>Nom d'utilisateur :</label>
+			<input name="pseudo" placeholder="Nom d'utilisateur" type="text" /></div>
+			<div><label>Mot de passe :</label>
+			<input name="mdp" placeholder="****" type="password" /></div>
+			<div><label>Nom :</label>
+			<input name="nom" type="text" /></div>
+			<div><label>Prénom :</label>
+			<input name="prénom" type="text" /></div>
+			<div><label>Adresse mail :</label>
+			<input name="mail" type="text" /></div>
+			<div><input name="insert" type="submit" value="Ajouter" /></div>
 		</form>
-		<div><?php echo $display; ?></div>
+		<div id="info"><?php echo $display; ?></div>
 	</body>
 </html>

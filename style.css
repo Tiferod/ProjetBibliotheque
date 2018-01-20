@@ -1,0 +1,59 @@
+body {
+	background-color: #eeeeee;
+	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+	font-weight: 500;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: Georgia, serif;
+	color: #004060;
+}
+
+a, a:visited {
+	color: #006699;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+table, td {
+	text-align: center;
+	border: 1px solid black;
+}
+
+#header {
+	font-size: 1.1em;
+	font-weight: bold;
+}
+
+input, select {
+	padding: 4px 5px;
+	background-color: #dddddd;
+	color: black;
+}
+
+#info {
+	font-size: 1.5em;
+	font-weight: bold;
+	color: red;
+}
+
+.menu {
+	text-align: center;
+	top: 0;
+	width:100%;
+}
+
+.menu a {
+	background: #004060;
+	color: #FFF;
+	padding: 10px 15px;
+	margin: 10px 10px 10px 10px;
+	line-height: 100px;
+}
+
+.menu a:hover {
+	background: #006699;
+}
