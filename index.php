@@ -2,7 +2,7 @@
 	include('login.php');
 	if (isset($_SESSION['pseudo'])) {
 		if ($_SESSION['is_admin']) {
-			header("location: admin.php");
+			header("location: admin_home.php");
 		}
 		else {
 			header("location: home.php");

@@ -29,7 +29,7 @@
 				$_SESSION['pseudo'] = $pseudo;
 				$_SESSION['mdp'] = $mdp;
 				if ($_SESSION['is_admin']) {
-					header("location: admin.php");
+					header("location: admin_home.php");
 				}
 				else {
 					header("location: home.php");
