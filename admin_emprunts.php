@@ -12,7 +12,7 @@
 			$display = "Emprunt refusé : L'abonné est exclus jusqu'au " . mysqli_fetch_row($query_exclusions)[0] . ".";
 		}
 		else {
-			$query_retards = mysqli_query($db, "SELECT SUM(amende) FROM Retards WHERE abonné = '$user_id' AND payé = 0");
+			$query_retards = mysqli_query($db, "SELECT SUM(amende) FROM Retards WHERE abonné = '$id_abo' AND payé = 0");
 			$amende = mysqli_fetch_row($query_retards)[0];
 			if ($amende > 0) {
 				$display = "Emprunt refusé : L'abonné doit encore payer une amende de " . $amende . " €.";

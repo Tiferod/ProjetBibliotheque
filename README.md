@@ -16,8 +16,6 @@ TODO :
 
 - remplir les BDDs
 
-- modération : 3 requêtes
-
 (- recherche de documents : des requêtes et des URLs)
 
 (- gestion documents : remplacer admins par auteurs / documents (attention si plusieurs auteurs par document))
