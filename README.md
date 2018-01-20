@@ -16,20 +16,18 @@ TODO :
 
 - remplir les BDDs
 
-- gestion abonnés : quelques opérations en plus
-
-- gestion documents : remplacer admins par auteurs / documents (attention si plusieurs auteurs par document)
-
 - emprunts : 2 menus déroulants + une grosse requête SQL
 
 - retours : 1 menu déroulant + une grosse requête SQL
 
 - modération : 3 requêtes
 
-- recherche de documents : des requêtes et des URLs
+(- recherche de documents : des requêtes et des URLs)
+
+(- gestion documents : remplacer admins par auteurs / documents (attention si plusieurs auteurs par document))
 
 - formater les dates
 
-- auteurs : nom + prénom ?
+(- auteurs : nom + prénom ?)
 
 - hash passwords ?

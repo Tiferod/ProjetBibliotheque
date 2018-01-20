@@ -27,6 +27,7 @@
 					$doc = mysqli_fetch_row($result_doc);
 					$result_auteurs = mysqli_query($db, "SELECT nom FROM CrééPar, Auteurs WHERE document = '$doc_id' AND auteur = ID");
 					$first_auteur = True;
+					$auteurs = "";
 					while ($auteur = mysqli_fetch_row($result_auteurs)) {
 						if ($first_auteur) {
 							$auteurs = $auteur[0];
