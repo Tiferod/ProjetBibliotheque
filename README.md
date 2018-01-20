@@ -16,10 +16,6 @@ TODO :
 
 - remplir les BDDs
 
-- emprunts : 2 menus déroulants + une grosse requête SQL
-
-- retours : 1 menu déroulant + une grosse requête SQL
-
 - modération : 3 requêtes
 
 (- recherche de documents : des requêtes et des URLs)
@@ -31,3 +27,7 @@ TODO :
 (- auteurs : nom + prénom ?)
 
 - hash passwords ?
+
+- plus de vérifications internes que ça marche
+
+- pour les emprunts et retours, sélectionner abonné en rentrant le pseudo ou le document par l'ID
