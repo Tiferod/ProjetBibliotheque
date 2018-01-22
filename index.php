@@ -23,7 +23,8 @@
 				<input name="pseudo" placeholder="Nom d'utilisateur" type="text" /></div>
 				<div><label>Mot de passe :</label>
 				<input name="mdp" placeholder="****" type="password" /></div>
-				<div><input name="is_admin" type="checkbox"> Administrateur ?</div>
+				<div><input name="is_admin" type="checkbox">Administrateur</div>
+				<div><input name="demo" type="checkbox">Démo</div>
 				<div><input name="submit" type="submit" value="Se connecter" /></div>
 				<span id="info"><?php echo $error; ?></span>
 			</form>

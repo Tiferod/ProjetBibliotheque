@@ -2,32 +2,30 @@
 
 `mysql.sql` = droits d'utilisateur sur `bibli`
 
-Users ayant accès à la BDD (pour les tests) :
+TODO (obligatoire) :
 
-- `dev` / `password` : grand manitou, utilisé dans le code, peut-être de manière permanente
+- pour les emprunts, vérifier que l'abonné ne dépasse pas le nombre max. d'emprunts par type de document
 
-TODO :
+- recherche de documents (titre/auteur/thème) + page document (toutes les infos associées) + page auteur (tous les documents écrits) + page thème (tous les documents concernés + tous les thèmes similaires)
 
-- style
+- gestion documents (ajout/modif/suppression + auteurs + thèmes)
 
-- remplir les BDDs
+TODO (pas obligatoire mais utile quand même) :
 
-(- recherche de documents : des requêtes et des URLs)
-
-(- gestion documents : remplacer admins par auteurs / documents (attention si plusieurs auteurs par document))
+- pour les emprunts et retours, permettre de sélectionner l'abonné en rentrant le pseudo dans un champ, ou le document par l'ID
 
 - formater les dates
 
-(- auteurs : nom + prénom ?)
+- plus de style
 
-- hash passwords ?
+- remplir plus les BDDs
+
+- hash passwords dans la BDD
 
 - plus de vérifications internes que ça marche
 
-- pour les emprunts et retours, sélectionner abonné en rentrant le pseudo ou le document par l'ID
-
 Known issues :
 
-- si un abonné fait plusieurs cotisations le même jour, seule la première est prise en compte
+- si un abonné fait plusieurs cotisations le même jour, seule la première est affichée
 
-- pas assez de caractères pour les titres
+- pas assez de caractères pour les titres (changer dans la structure de la table)

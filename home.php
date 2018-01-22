@@ -21,9 +21,9 @@
 		?>
 		<?php
 			$result = mysqli_query($db, "SELECT SUM(amende) FROM Retards WHERE abonné = '$user_id' AND payé = 0");
-			$row_cpt = mysqli_num_rows($result);
-			if ($row_cpt > 0) {
-				echo "<h2>Vous devez payer une amende de " . mysqli_fetch_row($result)[0] . '€ à cause de documents rendus en retard précédemment.</h2>';
+			$row_tot = mysqli_fetch_row($result)[0];
+			if ($row_tot > 0) {
+				echo "<h2>Vous devez payer une amende de " . $row_tot . '€ à cause de documents rendus en retard précédemment.</h2>';
 			}
 		?>
 		<h2>Statut</h2>
