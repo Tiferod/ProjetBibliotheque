@@ -24,16 +24,17 @@
 				$pseudo = $_POST['pseudo'];
 				$mdp = $_POST['mdp'];
 				$db = mysqli_connect("localhost", "dev", "password", "bibli");
+				mysqli_query($db, "SET NAMES 'utf8'");
 				if (mysqli_connect_errno()) {
 					printf("Échec de la connexion : %s\n", mysqli_connect_error());
 					exit();
 				}
 				if (isset($_POST['is_admin'])) {
-					$stmt = mysqli_prepare($db, "SELECT * FROM Admins WHERE pseudo =? AND mdp =?");
+					$stmt = mysqli_prepare($db, "SELECT * FROM Admins WHERE pseudo =? AND mdp =?") or die(mysqli_error($db));
 					$_SESSION['is_admin'] = True;
 				}
 				else {
-					$stmt = mysqli_prepare($db, "SELECT * FROM Abonnés WHERE pseudo =? AND mdp =?");
+					$stmt = mysqli_prepare($db, "SELECT * FROM Abonnés WHERE pseudo =? AND mdp =?") or die(mysqli_error($db));
 					$_SESSION['is_admin'] = False;
 				}
 				mysqli_stmt_bind_param($stmt, "ss", $pseudo, $mdp);
