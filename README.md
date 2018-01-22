@@ -4,8 +4,6 @@
 
 TODO (obligatoire) :
 
-- pour les emprunts, vérifier que l'abonné ne dépasse pas le nombre max. d'emprunts par type de document
-
 - recherche de documents (titre/auteur/thème) + page document (toutes les infos associées) + page auteur (tous les documents écrits) + page thème (tous les documents concernés + tous les thèmes similaires)
 
 - gestion documents (ajout/modif/suppression + auteurs + thèmes)
@@ -24,8 +22,6 @@ TODO (pas obligatoire mais utile quand même) :
 
 - plus de vérifications internes que ça marche
 
-Known issues :
+Known issues (et on s'en fout) :
 
 - si un abonné fait plusieurs cotisations le même jour, seule la première est affichée
-
-- pas assez de caractères pour les titres (changer dans la structure de la table)

@@ -19,12 +19,24 @@
 			}
 			else {
 				$id_doc = $_POST['document'];
-				mysqli_query($db, "INSERT INTO Emprunts(abonné, document, date_emprunt, date_retour_prevue) VALUES ('$id_abo', '$id_doc', NOW(), DATE_ADD(NOW(), INTERVAL 30 DAY))");
-				if (mysqli_affected_rows($db) > 0) {
-					$display = "L'emprunt a bien été enregistré.";
+				$query_doc = mysqli_query($db, "SELECT type FROM Emprunts, Documents WHERE abonné = '$id_abo' AND document = Documents.ID AND type =
+					(SELECT type FROM Documents WHERE ID = '$id_doc')");
+				$doc_cpt = mysqli_num_rows($query_doc);
+				$doc_type = mysqli_fetch_row($query_doc)[0];
+				if ($doc_cpt >= 3 && $doc_type == "livre") {
+					$display = "Emprunt refusé : pas plus de 3 livres simultanés.";
+				}
+				else if ($doc_cpt >= 2 && $doc_type != "livre") {
+					$display = "Emprunt refusé : pas plus de 2 documents du même type (hors livres) simultanés.";
 				}
 				else {
-					$display = "Échec de l'enregistrement.";
+					mysqli_query($db, "INSERT INTO Emprunts(abonné, document, date_emprunt, date_retour_prevue) VALUES ('$id_abo', '$id_doc', NOW(), DATE_ADD(NOW(), INTERVAL 30 DAY))");
+					if (mysqli_affected_rows($db) > 0) {
+						$display = "L'emprunt a bien été enregistré.";
+					}
+					else {
+						$display = "Échec de l'enregistrement.";
+					}
 				}
 			}
 		}

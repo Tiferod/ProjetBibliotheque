@@ -6,10 +6,12 @@
 			$_SESSION['demo'] = True;
 			$_SESSION['pseudo'] = $_POST['pseudo'];
 			$_SESSION['mdp'] = $_POST['mdp'];
-			if ($_SESSION['is_admin']) {
+			if (isset($_POST['is_admin'])) {
+				$_SESSION['is_admin'] = True;
 				header("location: admin_home.php");
 			}
 			else {
+				$_SESSION['is_admin'] = False;
 				header("location: home.php");
 			}
 		}

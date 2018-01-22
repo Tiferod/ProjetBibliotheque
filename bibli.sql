@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 20, 2018 at 04:10 PM
+-- Generation Time: Jan 22, 2018 at 02:35 PM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.1
 
@@ -182,8 +182,8 @@ INSERT INTO `CrééPar` (`auteur`, `document`) VALUES
 
 CREATE TABLE `Documents` (
   `ID` int(11) NOT NULL,
-  `titre` varchar(20) NOT NULL,
-  `type` varchar(20) NOT NULL,
+  `titre` varchar(50) NOT NULL,
+  `type` set('livre','BD','revue','CD','DVD') NOT NULL,
   `éditeur` varchar(20) DEFAULT NULL,
   `collection` varchar(20) DEFAULT NULL,
   `numéro` int(11) DEFAULT NULL,
@@ -196,11 +196,11 @@ CREATE TABLE `Documents` (
 --
 
 INSERT INTO `Documents` (`ID`, `titre`, `type`, `éditeur`, `collection`, `numéro`, `date_publication`, `disponible`) VALUES
-(1, 'Le Trône de Fer', 'roman', 'Bantam Books', NULL, NULL, '2017-03-01', 1),
-(2, 'Les Misérables', 'roman', 'Albert Lacroix', NULL, NULL, '2016-11-30', 1),
+(1, 'Le Trône de Fer', 'livre', 'Bantam Books', NULL, NULL, '2017-03-01', 1),
+(2, 'Les Misérables', 'livre', 'Albert Lacroix', NULL, NULL, '2016-11-30', 1),
 (3, 'La Magicienne trahie', 'BD', 'Le Lombard', 'Thorgal', 1, '2016-05-16', 0),
 (4, 'La Galère Noire', 'BD', 'Le Lombard', 'Thorgal', 3, '2017-04-12', 1),
-(5, 'Notre-Dame de Paris', 'roman', 'Charles Gosselin', NULL, NULL, '2015-01-13', 0);
+(5, 'Notre-Dame de Paris', 'livre', 'Charles Gosselin', NULL, NULL, '2015-01-13', 0);
 
 -- --------------------------------------------------------
 
