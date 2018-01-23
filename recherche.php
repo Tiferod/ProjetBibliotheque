@@ -11,7 +11,6 @@
 		<?php
 			include('header.php');
 		?>
-		<h1>WIP</h1>
 		<?php
 		if(isset($_POST['requete']) && $_POST['requete'] != NULL && isset($_POST['requete']) && $_POST['requete'] != NULL)
 
@@ -44,7 +43,7 @@
 
 		<p>Nous avons trouvé <?php echo $nb_resultats;
 
-		if($nb_resultats > 1) { echo ' résultats dans notre base de données. Voici les documents que nous avons trouvés :'; } else { echo ' résultat dans notre base de données. Voici le document que nous avons trouvés :'; }
+		if($nb_resultats > 1) { echo ' résultats dans notre base de données :'; } else { echo ' résultat dans notre base de données :'; }
 		?>
 
 		<br/>
@@ -69,8 +68,8 @@
 					$auteurs = $auteurs . ", " . $auteur[0];
 				}
 			}
-			echo '<tr><td>' . $doc[2] . '</td><td>' . $doc[1] . '</td><td>' . $auteurs . '</td><td>' . $doc[3]
-				. '</td><td>' . $doc[4] . '</td><td>' . $doc[5] . '</td><td>' . $doc[6]. '</td>';
+			echo '<tr><td>' . $doc[2] . '</td><td><a href="document.php?id=' . $doc[0] . '">' . $doc[1] . '</a></td><td>' . $auteurs . '</td><td>' . $doc[3]
+				. '</td><td>' . $doc[4] . '</td><td>' . $doc[5] . '</td><td>' . date("d/m/Y", strtotime($doc[6])). '</td>';
 			if($doc[7]) {echo '<td>Oui</td>';} else {echo '<td>Non</td>';}
 		}
 		echo '</table>';
