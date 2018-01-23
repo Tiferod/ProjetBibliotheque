@@ -13,7 +13,7 @@
 		?>
 		<h1>WIP</h1>
 		<?php
-		if(isset($_POST['requete']) && $_POST['requete'] != NULL)
+		if(isset($_POST['requete']) && $_POST['requete'] != NULL && isset($_POST['requete']) && $_POST['requete'] != NULL)
 
 		{
 
@@ -21,7 +21,16 @@
 
 		$categorie = htmlspecialchars($_POST['categorie']);
 
-		$result = mysqli_query($db, " SELECT * FROM documents WHERE `$categorie` LIKE '%$requete%' ORDER BY id DESC") or die (mysql_error());
+		if ($categorie == "auteur")
+		{
+			$result = mysqli_query($db, "SELECT * FROM Documents, CrééPar, Auteurs WHERE (Auteurs.nom LIKE '%$requete%') AND Documents.ID = CrééPar.document AND CrééPar.auteur = Auteurs.ID");
+		}
+		else
+		{
+			$result = mysqli_query($db, " SELECT * FROM Documents WHERE `$categorie` LIKE '%$requete%' ORDER BY id DESC") or die (mysql_error());
+		}
+
+		
 
 		$nb_resultats = mysqli_num_rows($result);
 
