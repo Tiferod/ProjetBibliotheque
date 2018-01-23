@@ -9,7 +9,7 @@
 		$query_exclusions = mysqli_query($db, "SELECT date_fin FROM Exclusions WHERE abonné = '$id_abo' AND NOW() < date_fin");
 		$row_cpt = mysqli_num_rows($query_exclusions);
 		if ($row_cpt > 0) {
-			$display = "Emprunt refusé : L'abonné est exclus jusqu'au " . mysqli_fetch_row($query_exclusions)[0] . ".";
+			$display = "Emprunt refusé : L'abonné est exclus jusqu'au " . date("d/m/Y", strtotime(mysqli_fetch_row($query_exclusions)[0])) . ".";
 		}
 		else {
 			$query_retards = mysqli_query($db, "SELECT SUM(amende) FROM Retards WHERE abonné = '$id_abo' AND payé = 0");

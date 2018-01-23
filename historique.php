@@ -37,8 +37,8 @@
 						}
 					}
 					echo '<tr><td>' . $doc[2] . '</td><td>' . $doc[1] . '</td><td>' . $auteurs . '</td><td>' . $doc[3]
-						. '</td><td>' . $doc[4] . '</td><td>' . $doc[5] . '</td><td>' . $doc[6]
-						. '</td><td>' . $row[1] . '</td><td>' . $row[2] . '</td></tr>';
+						. '</td><td>' . $doc[4] . '</td><td>' . $doc[5] . '</td><td>' . date("d/m/Y", strtotime($doc[6]))
+						. '</td><td>' . date("d/m/Y", strtotime($row[1])) . '</td><td>' . date("d/m/Y", strtotime($row[2])) . '</td></tr>';
 				}
 				echo '</table>';
 			}

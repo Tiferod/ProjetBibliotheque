@@ -21,7 +21,7 @@
 				echo '<div>Il y a ' . $row_cpt . ' document(s) actuellement en retard.</div>';
 				echo '<table><tr id="header"><td>ID</td><td>Titre</td><td>Emprunteur</td><td>Retour prévu</td></tr>';
 				while ($row = mysqli_fetch_row($result)) {
-					echo '<tr><td>'.$row[0].'</td><td>'.$row[1].'</td><td>'.$row[2].' '.$row[3].'</td><td>'.$row[4].'</td></tr>';
+					echo '<tr><td>'.$row[0].'</td><td>'.$row[1].'</td><td>'.$row[2].' '.$row[3].'</td><td>'.date("d/m/Y", strtotime($row[4])).'</td></tr>';
 				}
 				echo '</table>';
 			}
@@ -55,7 +55,7 @@
 				echo '<div>Il y a ' . $row_cpt . ' exclusion(s) en cours.</div>';
 				echo '<table><tr id="header"><td>Nom d\'utilisateur</td><td>Prénom</td><td>Nom</td><td>Exclus jusqu\'au</td></tr>';
 				while ($row = mysqli_fetch_row($result)) {
-					echo '<tr><td>'.$row[0].'</td><td>'.$row[1].'</td><td>'.$row[2].'</td><td>'.$row[3].'</td></tr>';
+					echo '<tr><td>'.$row[0].'</td><td>'.$row[1].'</td><td>'.$row[2].'</td><td>'.date("d/m/Y", strtotime($row[3])).'</td></tr>';
 				}
 				echo '</table>';
 			}

@@ -46,8 +46,8 @@
 						}
 					}
 					echo '<tr><td>' . $doc[2] . '</td><td>' . $doc[1] . '</td><td>' . $auteurs . '</td><td>' . $doc[3]
-						. '</td><td>' . $doc[4] . '</td><td>' . $doc[5] . '</td><td>' . $doc[6]
-						. '</td><td>' . $row[2] . '</td><td>' . $row[3] . '</td>';
+						. '</td><td>' . $doc[4] . '</td><td>' . $doc[5] . '</td><td>' . date("d/m/Y", strtotime($doc[6]))
+						. '</td><td>' . date("d/m/Y", strtotime($row[2])) . '</td><td>' . date("d/m/Y", strtotime($row[3])) . '</td>';
 
 					echo '<td><form action="" method="post">
 						<input type="hidden" name="id" value='.$row[0].' />

@@ -16,7 +16,7 @@
 			$result = mysqli_query($db, "SELECT date_fin FROM Exclusions WHERE abonné = '$user_id' AND NOW() < date_fin ORDER BY date_fin DESC");
 			$row_cpt = mysqli_num_rows($result);
 			if ($row_cpt > 0) {
-				echo "<h2>Vous êtes exclus jusqu'au " . mysqli_fetch_row($result)[0] . '.</h2>';
+				echo "<h2>Vous êtes exclus jusqu'au " . date("d/m/Y", strtotime(mysqli_fetch_row($result)[0])) . '.</h2>';
 			}
 		?>
 		<?php
@@ -32,7 +32,7 @@
 			$row = mysqli_fetch_row($result);
 			if (isset($row)) {
 				echo '<div>Vous avez cotisé comme ' . $row[0] . '.</div>';
-				echo '<div>Votre cotisation expire le ' . $row[1] . '.</div>';
+				echo '<div>Votre cotisation expire le ' . date("d/m/Y", strtotime($row[1])) . '.</div>';
 			}
 			else {
 				echo '<div>Votre cotisation a expiré.</div>';
@@ -51,7 +51,7 @@
 				echo '<table><tr id="header"><td>Document</td><td>Rendu le</td></tr>';
 				while ($row = mysqli_fetch_row($result)) {
 					$doc = mysqli_query($db, "SELECT titre FROM Documents WHERE ID = '$row[0]'");
-					echo '<tr><td>' . mysqli_fetch_row($doc)[0] . '</td><td>' . $row[1] . '</td></tr>';
+					echo '<tr><td>' . mysqli_fetch_row($doc)[0] . '</td><td>' . date("d/m/Y", strtotime($row[1])) . '</td></tr>';
 				}
 				echo '</table>';
 			}
@@ -68,7 +68,7 @@
 				echo '<table><tr><td>Document</td><td>Emprunté le</td><td>À rendre avant le</td></tr>';
 				while ($row = mysqli_fetch_row($result)) {
 					$doc = mysqli_query($db, "SELECT titre FROM Documents WHERE ID = '$row[0]'");
-					echo '<tr><td>' . mysqli_fetch_row($doc)[0] . '</td><td>' . $row[1] . '</td><td>' . $row[2] . '</td></tr>';
+					echo '<tr><td>' . mysqli_fetch_row($doc)[0] . '</td><td>' . date("d/m/Y", strtotime($row[1])) . '</td><td>' . date("d/m/Y", strtotime($row[2])) . '</td></tr>';
 				}
 				echo '</table>';
 			}
