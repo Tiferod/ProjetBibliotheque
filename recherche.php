@@ -21,7 +21,7 @@
 
 		$categorie = htmlspecialchars($_POST['categorie']);
 
-		$result = mysqli_query($db, " SELECT * FROM documents WHERE '$categorie' LIKE '%$requete%' ORDER BY id DESC") or die (mysql_error());
+		$result = mysqli_query($db, " SELECT * FROM documents WHERE `$categorie` LIKE '%$requete%' ORDER BY id DESC") or die (mysql_error());
 
 		$nb_resultats = mysqli_num_rows($result);
 
