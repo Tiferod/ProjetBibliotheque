@@ -17,9 +17,9 @@
 
 		{
 
-		$categorie = htmlspecialchars($_POST['categorie']);
-
 		$requete = htmlspecialchars($_POST['requete']);
+
+		$categorie = htmlspecialchars($_POST['categorie']);
 
 		$result = mysqli_query($db, " SELECT * FROM documents WHERE '$categorie' LIKE '%$requete%' ORDER BY id DESC") or die (mysql_error());
 
@@ -102,21 +102,18 @@
 
 		<div>
 
-		<form action="recherche.php" method="Post" style="display: inline-block;">
+		<form action="recherche.php" method="Post">
 
 			<input type="text" name="requete" size="20">
 
-			<input type="submit" value="Ok">
-
-		</form>
-
-		<form action="recherche.php" method="post" style="display: inline-block;">
 			<select name="categorie">
-				<option value="titre" >Titre</option>
+				<option value="titre" selected = "selected">Titre</option>
 				<option value="auteur">Auteur</option>
 				<option value="éditeur">Éditeur</option>
 				<option value="collection">Collection</option>
 			</select>
+
+			<input type="submit" value="Ok">
 		</form>
 
 		</div>
