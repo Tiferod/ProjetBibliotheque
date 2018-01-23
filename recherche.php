@@ -17,9 +17,11 @@
 
 		{
 
+		$categorie = htmlspecialchars($_POST['categorie']);
+
 		$requete = htmlspecialchars($_POST['requete']);
 
-		$result = mysqli_query($db, "SELECT * FROM documents WHERE titre LIKE '%$requete%' ORDER BY id DESC") or die (mysql_error());
+		$result = mysqli_query($db, " SELECT * FROM documents WHERE '$categorie' LIKE '%$requete%' ORDER BY id DESC") or die (mysql_error());
 
 		$nb_resultats = mysqli_num_rows($result);
 
@@ -82,7 +84,7 @@
 
 		<h3>Pas de résultats</h3>
 
-		<p>Nous n'avons trouvé aucun résultat pour votre requête "<? echo $_POST['requete']; ?>". <a href="recherche.php">Réessayez</a> avec autre chose.</p>
+		<p>Nous n'avons trouvé aucun résultat pour votre requête "<?php echo $_POST['requete']; ?>". <a href="recherche.php">Réessayez</a> avec autre chose.</p>
 
 		<?php
 
@@ -96,16 +98,28 @@
 
 		?>
 
-		<p>Vous allez faire une recherche de documents. Tapez un titre pour réaliser une recherche.</p>
+		<p>Vous allez faire une recherche de documents. Sélectionnez un champ et tapez votre recherche.</p>
 
-		 <form action="recherche.php" method="Post">
+		<div>
 
-		<input type="text" name="requete" size="10">
+		<form action="recherche.php" method="Post" style="display: inline-block;">
 
-		<input type="submit" value="Ok">
+			<input type="text" name="requete" size="20">
+
+			<input type="submit" value="Ok">
 
 		</form>
 
+		<form action="recherche.php" method="post" style="display: inline-block;">
+			<select name="categorie">
+				<option value="titre" >Titre</option>
+				<option value="auteur">Auteur</option>
+				<option value="éditeur">Éditeur</option>
+				<option value="collection">Collection</option>
+			</select>
+		</form>
+
+		</div>
 		<?php
 
 		}
