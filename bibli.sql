@@ -241,8 +241,8 @@ IF OLD.date_retour_prevue < NOW() THEN
 	INSERT INTO Retards(abonné, document, date_retour, amende)
 		VALUES(OLD.abonné, OLD.document, NOW(), DATEDIFF(NOW(), OLD.date_retour_prevue));
 END IF;
-INSERT INTO EmpruntsRendus(abonné, document, date_emprunt, date_retour)
-	VALUES(OLD.abonné, OLD.document, OLD.date_emprunt, NOW());
+INSERT INTO EmpruntsRendus(ID, abonné, document, date_emprunt, date_retour)
+	VALUES(OLD.ID, OLD.abonné, OLD.document, OLD.date_emprunt, NOW());
 END
 $$
 DELIMITER ;
@@ -266,10 +266,10 @@ CREATE TABLE `EmpruntsRendus` (
 --
 
 INSERT INTO `EmpruntsRendus` (`ID`, `abonné`, `document`, `date_emprunt`, `date_retour`) VALUES
-(0, 2, 1, '2018-01-01', '2018-01-20'),
-(0, 2, 1, '2018-01-08', '2018-01-20'),
-(0, 2, 1, '2018-01-15', '2018-01-20'),
-(0, 1, 2, '2018-01-02', '2018-01-20');
+(1, 2, 1, '2018-01-01', '2018-01-20'),
+(2, 2, 1, '2018-01-08', '2018-01-20'),
+(3, 2, 1, '2018-01-15', '2018-01-20'),
+(4, 1, 2, '2018-01-02', '2018-01-20');
 
 -- --------------------------------------------------------
 
