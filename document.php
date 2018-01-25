@@ -1,5 +1,6 @@
 <?php
 	include('session.php');
+	$display = "";
 	if (isset($_POST['insert'])) {
 		if (empty($_POST['titre']) || empty($_POST['auteurs']) || empty($_POST['type']) || empty($_POST['éditeur']) || empty($_POST['date_publication'])) {
 			$display = "Échec de la création du document, merci de remplir tous les champs";
