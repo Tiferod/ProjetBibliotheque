@@ -26,7 +26,7 @@
 		}
 		else
 		{
-			$result = mysqli_query($db, " SELECT * FROM Documents WHERE `$categorie` LIKE '%$requete%' ORDER BY id DESC") or die (mysql_error());
+			$result = mysqli_query($db, " SELECT * FROM Documents WHERE `$categorie` LIKE '%$requete%' ORDER BY id DESC") or die (mysqli_error());
 		}
 
 		

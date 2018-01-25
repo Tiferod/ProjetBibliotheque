@@ -26,7 +26,7 @@
 		}
 		else
 		{
-			$result = mysqli_query($db, " SELECT * FROM Documents WHERE `$categorie` LIKE '%$requete%' ORDER BY id DESC") or die (mysql_error());
+			$result = mysqli_query($db, " SELECT * FROM Documents WHERE `$categorie` LIKE '%$requete%' ORDER BY id DESC") or die (mysqli_error());
 		}
 
 		
@@ -106,6 +106,8 @@
 
 		?>
 
+		<h2>Accéder à un document</h2>
+
 		<p>Pour modifier ou supprimer un document, rendez-vous sur sa page dédiée. Vous pouvez y accéder en faisant une recherche.</p>
 
 		<div>
@@ -126,12 +128,14 @@
 
 		</div>
 
+		<h2>Ajouter un nouveau document</h2>
+
 		<p> Pour ajouter un nouveau document, veuillez remplir le formulaire suivant : </p>
-		<form action="document.php?id="<?php echo '1'; ?>" method="post">
+		<form action="document.php" method="post">
 			<div><label>Titre* :</label>
 			<input name="titre" type="text" /></div>
 			<div><label>Auteur* (séparé(e)s par des virgules):</label>
-			<input name="auteur" type="text" /></div>
+			<input name="auteurs" type="text" /></div>
 			<div><label>type* :</label>
 			<input name="type" type="text" /></div>
 			<div><label>Éditeur* :</label>

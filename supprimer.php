@@ -10,13 +10,15 @@
 	<body>
 		<?php
 			include('admin_header.php');
-		if ($_SESSION['is_admin'])
-		{
 			$doc_id = $_GET['id'];
-			mysqli_query($db, " DELETE FROM Documents WHERE ID = '$doc_id'") or die (mysql_error());
-			mysqli_query($db, " DELETE FROM CrééPar WHERE document = '$doc_id'") or die (mysql_error());
-		}
+			mysqli_query($db, " DELETE FROM Documents WHERE ID = '$doc_id'") or die (mysqli_error());
+			mysqli_query($db, " DELETE FROM CrééPar WHERE document = '$doc_id'") or die (mysqli_error());
+			if (mysqli_affected_rows($db) > 0) {
+				echo '<p id="info">Le document a été correctement supprimé.</p>';
+			}
+			else {
+				echo '<p id="info">Erreur lors de la suppression du document.</p>';
+			}
 		?>
-		<p>Le document a été correctement supprimé.</p>
 	</body>
 </html>

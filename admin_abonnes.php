@@ -24,7 +24,8 @@
 			mysqli_query($db, "CREATE USER '$pseudo'@'localhost' IDENTIFIED BY '$mdp';");
 			mysqli_query($db, "GRANT SELECT ON `bibli`.* TO '$pseudo'@'localhost';");
 			$stmt = mysqli_prepare($db, "INSERT INTO Abonnés(pseudo, mdp, nom, prénom, adresse, téléphone, mail, date_de_naissance) VALUES (?,?,?,?,?,?,?,?)");
-			mysqli_stmt_bind_param($stmt, "ssssssss", $pseudo, $mdp, $_POST['nom'], $_POST['prenom'], $_POST['adresse'], $_POST['tel'], $_POST['mail'], $_POST['naissance']);
+			$tel = empty($_POST['tel'])?NULL:$_POST['tel'];
+			mysqli_stmt_bind_param($stmt, "ssssssss", $pseudo, $mdp, $_POST['nom'], $_POST['prenom'], $_POST['adresse'], $tel, $_POST['mail'], $_POST['naissance']);
 			mysqli_stmt_execute($stmt);
 			$id = mysqli_insert_id($db);
 			if (mysqli_affected_rows($db) == 1) {
@@ -44,7 +45,8 @@
 		else {
 			$id = $_POST['id'];
 			$stmt = mysqli_prepare($db, "UPDATE Abonnés SET pseudo=?, mdp=?, nom=?, prénom=?, date_de_naissance=?, adresse=?, téléphone=?, mail=? WHERE ID = '$id'");
-			mysqli_stmt_bind_param($stmt, "ssssssss", $_POST['pseudo'], $_POST['mdp'], $_POST['nom'], $_POST['prenom'], $_POST['naissance'], $_POST['adresse'], $_POST['tel'], $_POST['mail']);
+			$tel = empty($_POST['tel'])?NULL:$_POST['tel'];
+			mysqli_stmt_bind_param($stmt, "ssssssss", $_POST['pseudo'], $_POST['mdp'], $_POST['nom'], $_POST['prenom'], $_POST['naissance'], $_POST['adresse'], $tel, $_POST['mail']);
 			mysqli_stmt_execute($stmt);
 			if (mysqli_affected_rows($db) == 1) {
 				$display = "Modification du compte réussie";
