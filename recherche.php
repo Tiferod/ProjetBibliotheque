@@ -12,7 +12,7 @@
 			include('header.php');
 		?>
 		<?php
-		if(isset($_POST['requete']) && $_POST['requete'] != NULL && isset($_POST['requete']) && $_POST['requete'] != NULL)
+		if(isset($_POST['requete']) && $_POST['requete'] != NULL)
 
 		{
 

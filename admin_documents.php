@@ -127,7 +127,7 @@
 		</div>
 
 		<p> Pour ajouter un nouveau document, veuillez remplir le formulaire suivant : </p>
-		<form action="" method="post">
+		<form action="document.php?id="<?php echo '1'; ?>" method="post">
 			<div><label>Titre* :</label>
 			<input name="titre" type="text" /></div>
 			<div><label>Auteur* (séparé(e)s par des virgules):</label>
